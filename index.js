@@ -1,11 +1,15 @@
 const fs = require('fs')
-const axios = require('axios')
+const getData = require('./src/services/rest')
 
-const api = axios.create({
-    baseURL: process.env.API_URL
-})
+let jsonData = ''
 
-let jsonData = '{"persons":[{"name":"John","city":"New York"},{"name":"Phil","city":"Ohio"}]}'
+async function restApi () {
+    const data = await getData()
+    
+    jsonData = `${data}`
+}
+
+restApi ()
 
 let jsonObj = JSON.parse(jsonData)
 console.log(jsonObj)
